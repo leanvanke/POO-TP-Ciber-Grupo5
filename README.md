@@ -13,4 +13,4 @@ Este repositorio contiene el primer trabajo práctico de la materia Programació
 - **Leandro Van Kemenade**
 
 ## Consigna del TP
-![Consigna del Trabajo Práctico](./Consigna TP.jpg)
+![Consigna del Trabajo Práctico](./Consigna_TP.jpg)
