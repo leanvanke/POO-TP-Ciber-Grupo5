@@ -11,6 +11,8 @@ Este repositorio contiene el primer trabajo práctico de la materia Programació
 ## Integrantes del Grupo 5
 
 - **Leandro Van Kemenade**
+- **Gonzalo Reales**
+- **Erick Yamo**
 
 ## Consigna del TP
 ![Consigna del Trabajo Práctico](./Consigna_TP.jpg)
