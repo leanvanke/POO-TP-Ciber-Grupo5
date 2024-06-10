@@ -1,22 +1,57 @@
 <?php
 
 class Camion extends Vehiculo {
-    private $sistemaRefrigeracion;
     
-    public function __construct($id, $capacidad, $sistemaRefrigeracion) {
-        parent::__construct($id, $capacidad, "Camión");
-        $this->sistemaRefrigeracion = $sistemaRefrigeracion;
+    public function __construct($id, $capacidad,$empresa) {
+        $this->id = $id;
+        $this->capacidad = $capacidad;
+        $this->tipo = "Camión";
+        $this->empresa = $empresa;
     }
-    
-    public function tieneRefrigeracion() {
-        return $this->sistemaRefrigeracion;
+
+    public function cargarCargaPesada() {
+        return "Hacer cargarCargaPesada"; //Falta Definir
     }
-    
-    public function descripcion() {
-        $refrigeracion = $this->sistemaRefrigeracion ? "con" : "sin";
-        return parent::descripcion() . ", Refrigeración: $refrigeracion sistema";
-    }
+
 }
 
+
+class CamionRefrigerante extends Vehiculo {
+    
+    protected $sistemaDeRefrigeracion;
+
+    public function __construct($id, $capacidad,$empresa) {
+        $this->id = $id;
+        $this->capacidad = $capacidad;
+        $this->tipo = "Camión Refrigereante";
+        $this->empresa = $empresa;
+        
+        $this->sistemaDeRefrigeracion = new SistemaDeRefrigeracion();
+    }
+
+    public function getTemperatura(){
+        return $this->sistemaDeRefrigeracion->getTemperatura();
+    }
+
+    public function setTemperatura($temperatura){
+        return $this->sistemaDeRefrigeracion->setTemperatura($temperatura);
+    }
+
+}
+
+
+class SistemaDeRefrigeracion {
+    
+    private $temperatura = 0;
+
+    public function getTemperatura()
+    {
+        return $this->temperatura;
+    }
+    public function setTemperatura($temperatura)
+    {
+        $this->temperatura = $temperatura;
+    }
+}
 
 ?>
