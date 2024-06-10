@@ -4,10 +4,7 @@
 class Utilitario extends Vehiculo {
 
     public function __construct($id, $capacidad,$empresa) {
-        $this->id = $id;
-        $this->capacidad = $capacidad;
-        $this->tipo = "Utilitario";
-        $this->empresa = $empresa;
+        parent::__construct($id, $capacidad,"Utilitario",$empresa);
     }
 
     public function navegarAreasUrbanas() {

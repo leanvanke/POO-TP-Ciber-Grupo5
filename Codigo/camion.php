@@ -3,10 +3,7 @@
 class Camion extends Vehiculo {
     
     public function __construct($id, $capacidad,$empresa) {
-        $this->id = $id;
-        $this->capacidad = $capacidad;
-        $this->tipo = "Camión";
-        $this->empresa = $empresa;
+        parent::__construct($id, $capacidad,"Camión",$empresa);
     }
 
     public function cargarCargaPesada() {
@@ -16,16 +13,13 @@ class Camion extends Vehiculo {
 }
 
 
-class CamionRefrigerante extends Vehiculo {
+class CamionRefrigerante extends Camion {
     
     protected $sistemaDeRefrigeracion;
 
-    public function __construct($id, $capacidad,$empresa) {
-        $this->id = $id;
-        $this->capacidad = $capacidad;
-        $this->tipo = "Camión Refrigereante";
-        $this->empresa = $empresa;
-        
+    public function __construct($id, $capacidad, $empresa) {
+        parent::__construct($id, $capacidad, $empresa);
+        $this->tipo = "Camión Refrigerante";
         $this->sistemaDeRefrigeracion = new SistemaDeRefrigeracion();
     }
 
@@ -35,6 +29,10 @@ class CamionRefrigerante extends Vehiculo {
 
     public function setTemperatura($temperatura){
         return $this->sistemaDeRefrigeracion->setTemperatura($temperatura);
+    }
+
+    public function descripcion() {
+        return parent::descripcion() . ", Temperatura: {$this->getTemperatura()}";
     }
 
 }

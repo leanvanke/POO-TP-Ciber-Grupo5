@@ -26,7 +26,7 @@ class Vehiculo {
     }
     
     public function descripcion() {
-        return "Vehículo ID: {$this->id}, Tipo: {$this->tipo}, Capacidad: {$this->capacidad} kg";
+        return "Vehículo ID: {$this->id}, Tipo: {$this->tipo}, Capacidad: {$this->capacidad} kg, Empresa: {$this->empresa}";
     }
 
     public function mantenimiento() {
