@@ -37,6 +37,10 @@ class CamionRefrigerante extends Vehiculo {
         return $this->sistemaDeRefrigeracion->setTemperatura($temperatura);
     }
 
+    public function descripcion() {
+        return "Vehículo ID: {$this->id}, Tipo: {$this->tipo}, Capacidad: {$this->capacidad} kg, Temperatura: {$this->getTemperatura()}";
+    }
+
 }
 
 
