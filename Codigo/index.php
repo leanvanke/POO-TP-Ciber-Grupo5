@@ -8,7 +8,7 @@ require_once 'flota.php';
 
 // Crear instancias de vehículos
 $camion1 = new Camion(1, 10000, true);
-$camion2 = new Camion(2, 15000, false);
+$camion2 = new Camion(2, 25000, false);
 $utilitario1 = new Utilitario(3, 2000);
 $utilitario2 = new Utilitario(4, 2500);
 
