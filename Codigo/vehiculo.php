@@ -1,24 +1,35 @@
 <?php
 
+require_once 'carroceria.php';
+require_once 'chasis.php';
+require_once 'motor.php';
 class Vehiculo {
     protected $id;
-    protected $capacidad;
     protected $tipo;
-    protected $empresa;
+    protected $carroceria;
+    protected $chasis;
+    protected $motor;
+    protected $carga;
+    protected $mantenimiento;
+    protected $cargaMaxima;
+
     
-    public function __construct($id, $capacidad, $tipo, $empresa) {
+    public function __construct($id, $cargaMaxima) {
         $this->id = $id;
-        $this->capacidad = $capacidad;
-        $this->tipo = $tipo;
-        $this->empresa = $empresa;
+        $this->cargaMaxima = $cargaMaxima;
+        $this->carroceria = new Carroceria($id);
+        $this->chasis = new Chasis($id);
+        $this->motor = new Motor($id);
+        $this->mantenimiento = false;
+        $this->carga = 0;
     }
     
     public function getId() {
         return $this->id;
     }
     
-    public function getCapacidad() {
-        return $this->capacidad;
+    public function getCarga() {
+        return $this->carga;
     }
     
     public function getTipo() {
@@ -26,17 +37,46 @@ class Vehiculo {
     }
     
     public function descripcion() {
-        return "Vehículo ID: {$this->id}, Tipo: {$this->tipo}, Capacidad: {$this->capacidad} kg, Empresa: {$this->empresa}";
+        return "Vehículo ID: {$this->id}, Tipo: {$this->tipo}, Carga: {$this->carga} kg, Carga Maxima: {$this->cargaMaxima} kg";
     }
 
-    public function mantenimiento() {
-        return "Hacer Mantenimiento"; //Falta Definir
+    public function comenzarMantenimiento() {
+        $this->mantenimiento = true;
     }
 
-    public function getEmpresa()
+    public function terminarMantenimiento() {
+        $this->mantenimiento = false;
+    }
+
+    public function getCarroceria()
     {
-        return $this->empresa;
+        return $this->carroceria;
     }
+    public function getChasis()
+    {
+        return $this->chasis;
+    }
+
+    public function getMotor()
+    {
+        return $this->motor;
+    }
+
+    public function cargar($nuevaCarga)
+    {
+        if ($this->carga + $nuevaCarga > $this->cargaMaxima){
+            return  "No se puede cargar, sobrepasa la carga maxima del vehiculo";
+        }else{
+            $this->carga = $this->carga + $nuevaCarga;
+            return  "Carga exitosa";
+        }
+    }
+   
+    public function descargar()
+    {
+        $this->carga = 0;
+    }
+
 }
 
 ?>

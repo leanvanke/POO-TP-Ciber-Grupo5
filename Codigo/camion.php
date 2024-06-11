@@ -1,24 +1,41 @@
 <?php
 
 class Camion extends Vehiculo {
-    
-    public function __construct($id, $capacidad,$empresa) {
-        parent::__construct($id, $capacidad,"Camión",$empresa);
-    }
+    private $acoplado;
 
-    public function cargarCargaPesada() {
-        return "Hacer cargarCargaPesada"; //Falta Definir
+    public function __construct($id, $capacidad) {
+        parent::__construct($id, $capacidad);
+        $this->tipo="Camión";
+        $this->acoplado= new Acoplado();
     }
 
 }
+    class Acoplado {
+        private $estadoAcoplado = false;
+        public function getEstado()
+        {
+                return $this->estadoAcoplado;
+        }
 
+        public function agregar()
+        {
+                $this->estadoAcoplado = true;
+        }
+
+        public function quitar()
+        {
+                $this->estadoAcoplado = false;
+        }
+
+        
+    }
 
 class CamionRefrigerante extends Camion {
     
-    protected $sistemaDeRefrigeracion;
+    private $sistemaDeRefrigeracion;
 
-    public function __construct($id, $capacidad, $empresa) {
-        parent::__construct($id, $capacidad, $empresa);
+    public function __construct($id, $capacidad) {
+        parent::__construct($id, $capacidad);
         $this->tipo = "Camión Refrigerante";
         $this->sistemaDeRefrigeracion = new SistemaDeRefrigeracion();
     }
