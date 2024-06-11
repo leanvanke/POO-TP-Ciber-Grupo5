@@ -9,6 +9,16 @@ class Camion extends Vehiculo {
         $this->acoplado= new Acoplado();
     }
 
+    public function acoplar()
+    {
+            $this->acoplado->agregar();
+    }
+
+    public function desacoplar()
+    {
+            $this->acoplado->quitar();
+    }
+
 }
     class Acoplado {
         private $estadoAcoplado = false;
@@ -57,7 +67,7 @@ class CamionRefrigerante extends Camion {
 
 class SistemaDeRefrigeracion {
     
-    private $temperatura = 0;
+    private $temperatura = 24;
 
     public function getTemperatura()
     {
