@@ -45,7 +45,7 @@ class CamionRefrigerante extends Camion {
     }
 
     public function setTemperatura($temperatura){
-        return $this->sistemaDeRefrigeracion->setTemperatura($temperatura);
+        $this->sistemaDeRefrigeracion->setTemperatura($temperatura);
     }
 
     public function descripcion() {
