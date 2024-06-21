@@ -12,11 +12,12 @@ class Vehiculo {
     protected $carga;
     protected $mantenimiento;
     protected $cargaMaxima;
+    protected $ruta;
+    protected $productos;
 
     
-    public function __construct($id, $cargaMaxima) {
+    public function __construct($id) {
         $this->id = $id;
-        $this->cargaMaxima = $cargaMaxima;
         $this->carroceria = new Carroceria($id);
         $this->chasis = new Chasis($id);
         $this->motor = new Motor($id);
@@ -64,17 +65,28 @@ class Vehiculo {
 
     public function cargar($nuevaCarga)
     {
-        if ($this->carga + $nuevaCarga > $this->cargaMaxima){
+
+        if ($this->carga + $nuevaCarga->getPeso() > $this->cargaMaxima){
             return  "No se puede cargar, sobrepasa la carga maxima del vehiculo";
+        }else if($nuevaCarga->esSensibleAlCalor()){
+            return  "No se puede cargar, vehiculo sin sistema de refrigeracion";
         }else{
-            $this->carga = $this->carga + $nuevaCarga;
+            $this->carga = $this->carga + $nuevaCarga->getPeso();
+            $this->productos[] = $nuevaCarga;
             return  "Carga exitosa";
         }
     }
    
     public function descargar()
     {
+        $this->productos = [];
         $this->carga = 0;
+        $this->ruta->eliminarDireccion();
+    }
+
+    public function setRuta($ruta)
+    {
+        $this->ruta = $ruta;
     }
 
 }

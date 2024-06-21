@@ -3,10 +3,11 @@
 class Camion extends Vehiculo {
     private $acoplado;
 
-    public function __construct($id, $capacidad) {
-        parent::__construct($id, $capacidad);
+    public function __construct($id) {
+        parent::__construct($id);
         $this->tipo="Camión";
         $this->acoplado= new Acoplado();
+        $this->cargaMaxima=2000;
     }
 
     public function acoplar()
@@ -44,8 +45,8 @@ class CamionRefrigerante extends Camion {
     
     private $sistemaDeRefrigeracion;
 
-    public function __construct($id, $capacidad) {
-        parent::__construct($id, $capacidad);
+    public function __construct($id) {
+        parent::__construct($id);
         $this->tipo = "Camión Refrigerante";
         $this->sistemaDeRefrigeracion = new SistemaDeRefrigeracion();
     }
@@ -59,7 +60,19 @@ class CamionRefrigerante extends Camion {
     }
 
     public function descripcion() {
-        return parent::descripcion() . ", Temperatura: {$this->getTemperatura()}";
+        return parent::descripcion() . ", Temperatura: {$this->sistemaDeRefrigeracion->getTemperatura()}";
+    }
+
+    public function cargar($nuevaCarga)
+    {
+
+        if ($this->carga + $nuevaCarga->getPeso() > $this->cargaMaxima){
+            return  "No se puede cargar, sobrepasa la carga maxima del vehiculo";
+        }else{
+            $this->carga = $this->carga + $nuevaCarga->getPeso();
+            $this->productos[] = $nuevaCarga;
+            return  "Carga exitosa";
+        }
     }
 
 }

@@ -41,8 +41,8 @@ echo $utilitario1->navegarAreasUrbanas();
 $empresa = new Empresa("Homero Jay Shipping");
 $gerente= new Gerente("Lean");
 $empresa->getAlmacen()->setManager($gerente);
-$camion1 = new Camion(1, 10000);
-$camion2 = new Camion(2, 20000);
+$camion1 = new Camion(1);
+$camion2 = new Camion(2);
 $empresa->agregarVehiculo($camion1);
 $empresa->agregarVehiculo($camion2);
 $ruta1 = new Ruta(1,false);
@@ -54,9 +54,8 @@ $empresa->getAlmacen()->addRutas($ruta1);
 
 echo $empresa->descripcion();
 
-print_r($empresa->prestarVehiculo(1));
-
+//print_r($empresa->prestarVehiculo(1));
+$empresa->prestarVehiculo(1);
 echo "Presto 1 Camion" . "\n";
-
 echo $empresa->descripcion();
 ?>
