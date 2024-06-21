@@ -14,7 +14,7 @@ class Vehiculo {
     protected $cargaMaxima;
     protected $ruta;
     protected $productos;
-
+    protected $ultimoMantenimiento;
     
     public function __construct($id) {
         $this->id = $id;
@@ -89,6 +89,15 @@ class Vehiculo {
         $this->ruta = $ruta;
     }
 
+    public function darMantenimiento()
+    {
+        $this->ultimoMantenimiento = date("Y/m/d");        
+    }
+
+    public function ultimoMantenimiento()
+    {
+        return  $this->ultimoMantenimiento;
+    }
 }
 
 ?>

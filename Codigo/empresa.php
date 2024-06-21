@@ -1,14 +1,17 @@
 <?php
 
 require_once 'almacenCentral.php';
+require_once 'dptoMantenimiento.php';
 class Empresa {
     private $flota = [];
     private $nombre;
     private $almacen;
+    private $mantenimiento;
     
     public function __construct($nombre) {
         $this->nombre=$nombre;
         $this->almacen = new AlmacenCentral();
+        $this->mantenimiento = new DptoMantenimiento();
     }
     public function agregarVehiculo($vehiculo) {
         $this->flota[] = $vehiculo;
@@ -47,7 +50,10 @@ class Empresa {
         return $vehiculoPrestado;
     }
 
-
+    public function mantenimientoFlota()
+    {
+        $this->mantenimiento->mantenimiento($this->obtenerflota());
+    }
 }
 
 ?>

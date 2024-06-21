@@ -60,7 +60,7 @@ class CamionRefrigerante extends Camion {
     }
 
     public function descripcion() {
-        return parent::descripcion() . ", Temperatura: {$this->sistemaDeRefrigeracion->getTemperatura()}";
+        return parent::descripcion() . ", Temperatura: {$this->getTemperatura()}";
     }
 
     public function cargar($nuevaCarga)
