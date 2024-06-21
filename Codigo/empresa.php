@@ -8,7 +8,7 @@ class Empresa {
     public function __construct($nombre) {
         $this->nombre=$nombre;
     }
-    public function agregarVehiculo(Vehiculo $vehiculo) {
+    public function agregarVehiculo($vehiculo) {
         $this->flota[] = $vehiculo;
     }
     
@@ -37,6 +37,17 @@ class Empresa {
     public function getAlmacen()
     {
         return $this->almacen;
+    }
+
+    public function prestarVehiculo($id)
+    {
+        foreach ($this->flota as $vehiculo) {
+            if ($vehiculo->getId() == $id){
+                $vehiculoPrestado = $vehiculo;
+                unset($vehiculo);
+            } 
+        }
+        return $vehiculoPrestado;
     }
 
 
