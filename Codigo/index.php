@@ -32,4 +32,6 @@ $empresa->agregarVehiculo($utilitario2);
 // Mostrar descripción de la flota
 echo $empresa->descripcion();
 
+echo $utilitario1->navegarAreasUrbanas();
+
 ?>

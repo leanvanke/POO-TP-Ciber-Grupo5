@@ -4,8 +4,8 @@
 class AlmacenCentral {
 
     private $productos = [];
-    private $gerente;
     private $rutas = [];
+    private $gerente;
     public function __construct($gerente) {
         $this->gerente = $gerente;
     }
