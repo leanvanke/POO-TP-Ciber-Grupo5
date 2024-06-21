@@ -1,7 +1,7 @@
 <?php
 
 
-class Producto {
+class Ruta {
 
     private $id;
     private $direcciones = [];

@@ -1,5 +1,6 @@
 <?php
 
+require_once 'almacenCentral.php';
 class Empresa {
     private $flota = [];
     private $nombre;
@@ -7,6 +8,7 @@ class Empresa {
     
     public function __construct($nombre) {
         $this->nombre=$nombre;
+        $this->almacen = new AlmacenCentral();
     }
     public function agregarVehiculo($vehiculo) {
         $this->flota[] = $vehiculo;
@@ -29,11 +31,6 @@ class Empresa {
         return $this->nombre;
     }
     
-    public function setAlmacen($almacen)
-    {
-        $this->almacen = $almacen;
-    }
-
     public function getAlmacen()
     {
         return $this->almacen;
@@ -41,10 +38,10 @@ class Empresa {
 
     public function prestarVehiculo($id)
     {
-        foreach ($this->flota as $vehiculo) {
+        foreach ($this->flota as $key => $vehiculo) {
             if ($vehiculo->getId() == $id){
                 $vehiculoPrestado = $vehiculo;
-                unset($vehiculo);
+                unset($this->flota[$key]);
             } 
         }
         return $vehiculoPrestado;

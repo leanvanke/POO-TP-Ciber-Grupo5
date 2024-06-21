@@ -7,9 +7,11 @@ require_once 'utilitario.php';
 require_once 'empresa.php';
 require_once 'almacenCentral.php';
 require_once 'gerente.php';
+require_once 'ruta.php';
+require_once 'producto.php';
 
 
-
+/*
 $empresa = new Empresa("Homero Jay Shipping");
 $gerente= new Gerente("Lean");
 $almacenCentral = new AlmacenCentral($gerente);
@@ -33,5 +35,28 @@ $empresa->agregarVehiculo($utilitario2);
 echo $empresa->descripcion();
 
 echo $utilitario1->navegarAreasUrbanas();
+*/
 
+
+$empresa = new Empresa("Homero Jay Shipping");
+$gerente= new Gerente("Lean");
+$empresa->getAlmacen()->setManager($gerente);
+$camion1 = new Camion(1, 10000);
+$camion2 = new Camion(2, 20000);
+$empresa->agregarVehiculo($camion1);
+$empresa->agregarVehiculo($camion2);
+$ruta1 = new Ruta(1,false);
+$ruta1->agregarDireccion("Test 1");
+$ruta1->agregarDireccion("Test 2");
+$producto = new Producto(1,1,"Coca-Cola",false);
+$empresa->getAlmacen()->addProducto($producto);
+$empresa->getAlmacen()->addRutas($ruta1);
+
+echo $empresa->descripcion();
+
+print_r($empresa->prestarVehiculo(1));
+
+echo "Presto 1 Camion" . "\n";
+
+echo $empresa->descripcion();
 ?>

@@ -6,9 +6,6 @@ class AlmacenCentral {
     private $productos = [];
     private $rutas = [];
     private $gerente;
-    public function __construct($gerente) {
-        $this->gerente = $gerente;
-    }
 
     public function getManager(){
         return $this->gerente;
