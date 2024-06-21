@@ -12,7 +12,7 @@ class Utilitario extends Vehiculo {
     public function setRuta($ruta)
     {
         if (!$ruta->esUrbana()){
-            return  "No se puede cargar ruta, Utilitario solo recorre rutas urbanas";
+            throw new Exception("No se puede cargar ruta, Utilitario solo recorre rutas urbanas");
         }else{
             $this->ruta = $ruta;
         }

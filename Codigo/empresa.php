@@ -26,7 +26,7 @@ class Empresa {
         foreach ($this->flota as $vehiculo) {
             $descripcion .= $vehiculo->descripcion() . "\n";
         }
-        return $descripcion;
+        return $descripcion . "\n";
     }
 
     public function getNombre()

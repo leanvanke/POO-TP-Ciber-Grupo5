@@ -1,61 +1,80 @@
 <?php
 
 // Incluir las clases
+require_once 'empresa.php';
+require_once 'gerente.php';
 require_once 'vehiculo.php';
 require_once 'camion.php';
+require_once 'camionRefrigerante.php';
 require_once 'utilitario.php';
-require_once 'empresa.php';
-require_once 'almacenCentral.php';
-require_once 'gerente.php';
 require_once 'ruta.php';
 require_once 'producto.php';
 
 
-/*
-$empresa = new Empresa("Homero Jay Shipping");
-$gerente= new Gerente("Lean");
-$almacenCentral = new AlmacenCentral($gerente);
-$empresa->setAlmacen($almacenCentral);
+//Creo los Produtos
+$producto1 = new Producto(1,1,"Coca-Cola",false);
+$producto2 = new Producto(2,25,"Helado",true);
+$producto3 = new Producto(3,5,"Pan",false);
+$producto4 = new Producto(4,100,"Harina",false);
 
-// Crear instancias de vehículos
-$camion1 = new Camion(1, 10000);
-$camion2 = new Camion(2, 25000);
-$camion3 = new CamionRefrigerante(6, 25000);
-$utilitario1 = new Utilitario(3, 2000);
-$utilitario2 = new Utilitario(4, 2500);
-
-// Crear instancia de flota y agregar vehículos
-$empresa->agregarVehiculo($camion1);
-$empresa->agregarVehiculo($camion2);
-$empresa->agregarVehiculo($camion3);
-$empresa->agregarVehiculo($utilitario1);
-$empresa->agregarVehiculo($utilitario2);
-
-// Mostrar descripción de la flota
-echo $empresa->descripcion();
-
-echo $utilitario1->navegarAreasUrbanas();
-*/
-
-
-$empresa = new Empresa("Homero Jay Shipping");
-$gerente= new Gerente("Lean");
-$empresa->getAlmacen()->setManager($gerente);
-$camion1 = new Camion(1);
-$camion2 = new Camion(2);
-$empresa->agregarVehiculo($camion1);
-$empresa->agregarVehiculo($camion2);
+//Creo las Rutas
 $ruta1 = new Ruta(1,false);
 $ruta1->agregarDireccion("Test 1");
 $ruta1->agregarDireccion("Test 2");
-$producto = new Producto(1,1,"Coca-Cola",false);
-$empresa->getAlmacen()->addProducto($producto);
+$ruta2 = new Ruta(2,false);
+$ruta2->agregarDireccion("Test 3");
+$ruta2->agregarDireccion("Test 4");
+$ruta3 = new Ruta(3,true);
+$ruta3->agregarDireccion("Test 5");
+$ruta3->agregarDireccion("Test 6");
+
+//Creo Empresas con sus Gerentes
+$empresa = new Empresa("Homero Jay Shipping");
+$empresa2 = new Empresa("Empresa que va a Prestar un Vehiculo");
+$gerente1= new Gerente("Lean");
+$gerente2= new Gerente("Juan");
+$empresa->getAlmacen()->setManager($gerente1);
+$empresa2->getAlmacen()->setManager($gerente2);
+
+//Creo 1 de cada vehiculo y los agurego a la flota
+$camion = new Camion(1);
+$camionRefrigerante = new CamionRefrigerante(2);
+$utilitario = new Utilitario(3);
+$empresa->agregarVehiculo($camion);
+$empresa->agregarVehiculo($camionRefrigerante);
+$empresa->agregarVehiculo($utilitario);
+
+//Agrego los productos y las rutas al almacen general
+$empresa->getAlmacen()->addProducto($producto1);
+$empresa->getAlmacen()->addProducto($producto2);
+$empresa->getAlmacen()->addProducto($producto3);
+$empresa->getAlmacen()->addProducto($producto4);
 $empresa->getAlmacen()->addRutas($ruta1);
+$empresa->getAlmacen()->addRutas($ruta2);
+$empresa->getAlmacen()->addRutas($ruta3);
 
+//Veo por consola una descripcion de la empresa
 echo $empresa->descripcion();
 
-//print_r($empresa->prestarVehiculo(1));
-$empresa->prestarVehiculo(1);
-echo "Presto 1 Camion" . "\n";
+//Cargo los vehiculos
+$camion->cargar($producto1);
+$camion->cargar($producto4);
+$camionRefrigerante->cargar($producto2);
+$utilitario->cargar($producto3);
+
+//Cargo las rutas a los camiones
+$camion->setRuta($ruta1);
+$camionRefrigerante->setRuta($ruta2);
+$utilitario->setRuta($ruta3);
+
+
+//Veo por consola una descripcion de la empresa actualizada
 echo $empresa->descripcion();
+
+//Descargo el utilitario
+$utilitario->descargar();
+
+//Veo por consola una descripcion de la empresa actualizada
+echo $empresa->descripcion();
+
 ?>

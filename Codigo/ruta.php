@@ -5,7 +5,6 @@ class Ruta {
 
     private $id;
     private $direcciones = [];
-
     private $direccionesYaVisitadas = [];
     private $urbana;
 

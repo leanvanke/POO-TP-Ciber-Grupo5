@@ -3,6 +3,7 @@
 require_once 'carroceria.php';
 require_once 'chasis.php';
 require_once 'motor.php';
+require_once 'ruta.php';
 class Vehiculo {
     protected $id;
     protected $tipo;
@@ -67,13 +68,12 @@ class Vehiculo {
     {
 
         if ($this->carga + $nuevaCarga->getPeso() > $this->cargaMaxima){
-            return  "No se puede cargar, sobrepasa la carga maxima del vehiculo";
+            throw new Exception("No se puede cargar, sobrepasa la carga maxima del vehiculo");
         }else if($nuevaCarga->esSensibleAlCalor()){
-            return  "No se puede cargar, vehiculo sin sistema de refrigeracion";
+            throw new Exception("No se puede cargar, vehiculo sin sistema de refrigeracion");
         }else{
             $this->carga = $this->carga + $nuevaCarga->getPeso();
             $this->productos[] = $nuevaCarga;
-            return  "Carga exitosa";
         }
     }
    
